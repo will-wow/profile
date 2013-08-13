@@ -1,0 +1,146 @@
+/*general*/
+body {
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	font-family: 'Arimo', San-Serif, Arial;
+	font-weight:400;
+
+	/*background-gradient*/
+	background-color: #BCBCCC;
+	background-image: -ms-linear-gradient(bottom, #DADAED 0%, #BCBCCC 100%); /* IE10 Consumer Preview */ 
+	background-image: -moz-linear-gradient(bottom, #DADAED 0%, #BCBCCC 100%); /* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(bottom, #DADAED 0%, #BCBCCC 100%); /* Opera */ 
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #DADAED), color-stop(1, #BCBCCC)); /* Webkit (Safari/Chrome 10) */
+	background-image: -webkit-linear-gradient(bottom, #DADAED 0%, #BCBCCC 100%); /* Webkit (Chrome 11+) */ 
+	background-image: linear-gradient(to top, #DADAED 0%, #BCBCCC 100%); /* W3C Markup, IE10 Release Preview */ 
+	}
+a {color: #5F7AB0; text-decoration:none;}
+a:hover{color: #6699FF;}
+a:active{color: #66BAFF;}
+
+li {list-style:none;}
+
+/*Header*/
+.header {
+	/*background-gradient*/
+	background-color: #24242E;
+	background-image: -ms-linear-gradient(bottom, #373747 0%, #24242E 100%); /* IE10 Consumer Preview */ 
+	background-image: -moz-linear-gradient(bottom, #373747 0%, #24242E 100%); /* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(bottom, #373747 0%, #24242E 100%); /* Opera */ 
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #373747), color-stop(1, #24242E)); /* Webkit (Safari/Chrome 10) */
+	background-image: -webkit-linear-gradient(bottom, #373747 0%, #24242E 100%); /* Webkit (Chrome 11+) */ 
+	background-image: linear-gradient(to top, #373747 0%, #24242E 100%); /* W3C Markup, IE10 Release Preview */ 
+
+    padding:15px;
+    margin-left:-10px;
+    margin-right:-10px;
+	margin-top:20px;
+	margin-bottom:40px;
+	min-width:1200px;
+	clear:left;
+}
+
+.menu-container{
+	margin-left:auto;
+	margin-right:auto;
+	display:table;
+}
+
+.list-logo {
+	display: inline-block;
+}
+a.logo {
+	display: inline-block;
+	vertical-align:middle;
+	margin: -43px 30px;
+	width:117px;
+	height:130px;
+	background: url('../img/will-logo.png') bottom;
+}
+.logo:hover{background-position:0 0;}
+
+.menu-a{color: #F4F8FF}
+.menu-a:active{color: #FFCC66}
+.list-menu{
+	margin:0px 15px;
+	vertical-align:middle;
+    display: inline-block;
+	line-height:0px;
+	font-size:2.25em;
+	text-transform: uppercase;
+	font-family: 'Bevan', San-Serif;
+	font-weight: 400;
+}
+
+/*Body*/
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1000px;
+	min-height:1000px;
+}
+
+p{
+	line-height:20px;
+	margin-top:-5px;
+	text-align: left;
+	font-weight: 400;
+    color: #2a2c36;
+}
+
+.b {
+	font-weight:700;
+	color:#6699FF;
+}
+
+.headline {
+	font-family: 'Bevan', San-Serif, Arial;
+	margin:0px;
+	line-height: 60px;
+	font-size: 2em;
+	text-align: left;
+	font-weight: 400;
+    color: #2a2c36;
+}
+
+.old {font-family: 'Cinzel'}
+
+/*Sidebar*/
+.sidebar{
+	float:right;
+	border-left-style:solid;
+	border-color:white;
+	border-width:1px;
+	margin-left:10px;
+	padding-left:10px;
+}
+
+.side_container {
+	margin-top:15px;
+	min-height:300px;
+	width:300px;
+}
+
+/*Footer*/
+.footer {
+	/*background-gradient*/
+	background-color: #24242E;
+	background-image: -ms-linear-gradient(bottom, #373747 0%, #24242E 100%); /* IE10 Consumer Preview */ 
+	background-image: -moz-linear-gradient(bottom, #373747 0%, #24242E 100%); /* Mozilla Firefox */ 
+	background-image: -o-linear-gradient(bottom, #373747 0%, #24242E 100%); /* Opera */ 
+	background-image: linear-gradient(to top, #373747 0%, #24242E 100%); /* W3C Markup, IE10 Release Preview */ 
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #373747), color-stop(1, #24242E)); /* Webkit (Safari/Chrome 10) */
+	background-image: -webkit-linear-gradient(bottom, #373747 0%, #24242E 100%); /* Webkit (Chrome 11+) */ 
+	
+    margin-left:-10px;
+    margin-right:-10px;
+}
+
+.copyright{
+	text-align:center;
+    color: #F4F8FF;
+	margin-top:0;
+	font-size: .85em;
+}

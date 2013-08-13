@@ -1,0 +1,14 @@
+#text_container{
+	width:100%;
+}
+
+.desc_container{
+	display:none;
+}
+
+#sidebar_text{width:50%;}
+
+#default_text{
+	display:inline;
+}
+

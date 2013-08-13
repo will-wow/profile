@@ -1,6 +1,32 @@
 {% extends "_layouts/base.html" %}
 
+{% block links %}
+    <link rel="stylesheet" href='{{ STATIC_URL }}css/sidebarSamples.css'/>    
+    <script type="text/javascript" src='{{ STATIC_URL }}js/sidebarFront.js'></script>
+{% endblock %}
+
+{% block page_sidebar %}
+    	<div class='sidebar' id='sidebar_samples'>
+			<div class='side_container' id='sample_container'><p id='sidebarText'>Roll over the links below to get a taste of what I've been up to, then click through to see more!</p></div>
+		</div>
+{% endblock %}
+
 {% block page_content %}
-<h2>Blog Posts</h2>
-<a class='btn' href="{% url 'blog:list' %}">Check out my blog.</a>
+        <div class='main'>
+            <p class='headline'>I'm Will!</p>
+            <p>They say that <span class='old'>"Where there's a Will, there's a way."</span></p>
+            <p>I've always liked that phrase, for obvious reasons. But it does seem a little out-dated. I mean, where? This is the internet. Where isn't really that important. (Though, FYI, I'm in San Francisco.)</P>
+            <p class='linkedText'>
+            	<em>When</em> though, now that does mean something. You never know when you'll need something done - except that <em>when</em> usually means <em>now.</em> That's is why I'm a generalist.
+            	Whenever you need something, I probably know how to help. Need a script to parse through some data, right now? <a class='samples' id='report'>Done.</a> 
+            	Is it t-shirt time? <a class='samples' id='rocket'>You bet it is.</a>
+            	Time for a new logo? <a href='ellis/index.html' class='samples' id='ellis'>I can do that.</a> 
+            	Looking for economic analysis? <a class='samples' id='tajik'>That's what my degree's in.</a> 
+            	Think it's time your organization had a newsletter? <a class='samples' id='hull'>It'll look awesome.</a> 
+            	Your day needs brightening? <a class='samples' id='turtle'>Adorable.</a> 
+            	Got an event coming up? <a class='samples' id='poster'>It's on!</a>
+            	Decide to make your online life more secure? <a href='sitePass/index.html' class='samples' id='sitePass'>I've got you covered.</a> 
+            	And I can do all that while working in payroll, Accounts Payable, or whatever else needs doing.
+            </p>
+        </div>
 {% endblock %}
