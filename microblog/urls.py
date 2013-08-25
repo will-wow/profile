@@ -14,9 +14,11 @@ urlpatterns = patterns('',
     url(r'^blog/', include('blog.urls', namespace='blog')),
     
     url(r'^about/', views.AboutView.as_view(), name='about'),
-    url(r'^code/', views.CodeView.as_view(), name='code'),
+    url(r'^code/', include('code_page.urls', namespace='code_page'), name='code_page'),
     url(r'^design/', views.DesignView.as_view(), name='design'),
     url(r'^contact/', views.ContactView.as_view(), name='contact'),
+    
+    url(r'^sitePass/', views.sitePassView, name='sitePass'),
     
     url(r'^admin/', include(admin.site.urls)),
 )

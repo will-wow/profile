@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>sitePass: Generate a site password</title>
+    <link rel="stylesheet" href='{{ STATIC_URL }}sitePass/popup.css'/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src='{{ STATIC_URL }}sitePass/sha256.js'></script>
+    <script type="text/javascript" src='{{ STATIC_URL }}sitePass/popup.js'></script>
+    <link rel="shortcut icon" type="image/ico"  href='{{ STATIC_URL }}sitePass/favicon.ico'/>
+</head>
+<body>
+		<h2>sitePass:</h2>
+		<h3>Generate a password for each of your websites!</h3>
+        <form>
+			<div>
+            <p id='lab_site'>Website:</p><p id='lab_iteration'>Iteration:</p> 
+			<input type='text' id='txt_site' value='example.com' placeholder='example.com'>
+			<input type='number' id='num_iteration' value=1 placeholder='#'>
+			</div>
+            
+            <p id='lab_password'>Your password:</p> <input type='password' id='txt_password' placeholder='Password' autofocus='autofocus'>
+            
+            <input type='button' id='btn_generate' value="Generate Password"/>
+            
+            <p>New password:</p> <input type='text' id='txt_new_pass'>
+        </form>
+</body>
+</html>
