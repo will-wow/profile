@@ -11,7 +11,6 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('will', 'william.lee.wagner@gmail.com'),
@@ -47,7 +46,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['www.whentheresawill.net']
+ALLOWED_HOSTS = ['whentheresawill.net']
 #ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
@@ -80,13 +79,13 @@ MEDIA_ROOT = root('..', 'uploads')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = root('..', 'static')
+STATIC_ROOT = '/home/whenther/public_html/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -130,7 +129,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'microblog.urls'
 
-# Python dotted path to the WSGI application used by Django's runserver.
+# Python dotted path to the WSGI application used by Django's runserver. 
 WSGI_APPLICATION = 'microblog.wsgi.application'
 
 TEMPLATE_DIRS = (
