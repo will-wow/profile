@@ -3,6 +3,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
 from . import views
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 
@@ -11,6 +12,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'microblog.views.home', name='home'),
     # url(r'^microblog/', include('microblog.foo.urls')),
     url(r'^$', views.HomepageView.as_view(), name='home'),
+    
+    (r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+    
     url(r'^blog/', include('blog.urls', namespace='blog')),
     
     url(r'^about/', views.AboutView.as_view(), name='about'),
@@ -22,10 +26,3 @@ urlpatterns = patterns('',
     
     url(r'^admin/', include(admin.site.urls)),
 )
-
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^static/(.*)$', 'django.views.static.serve', {
-            'document_root': settings.STATIC_ROOT
-        }),
-    )
