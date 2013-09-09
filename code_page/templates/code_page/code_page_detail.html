@@ -20,7 +20,7 @@
 <p><a href={{ code_page.link }}>See it in action<a/></p>
 {% endif %}
 {% if blog_page.binary_path %}
-<p>This has a binary.</p>
+<p><a href="{{ STATIC_URL }}code_page/{{ code_page.binary }}">Check out the download</a></p>
 {% endif %}
 
 {{ code_page.description|linebreaks }}
