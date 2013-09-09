@@ -3,9 +3,9 @@
 {% block page_title %}{{ code_page.title }} | {% endblock %}
 
 {% block links %}
-<title>Hello SyntaxHighlighter</title>
+<title>Code: {{ code_page.title }}</title>
 <script type="text/javascript" src="{{ STATIC_URL }}code_page/js/shCore.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}code_page/js/shBrushJs.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}code_page/js/shBrushPython.js"></script>
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}code_page/css/shCoreDefault.css"/>
 <script type="text/javascript">SyntaxHighlighter.all();</script>
 {% endblock %}
@@ -17,10 +17,10 @@
 <div class='main'>
 <h2>{{ code_page.title }}</h2>
 {% if code_page.link %}
-<p><a href={{ code_page.link }}>See it in action<a/></p>
+<p><a href="{{ code_page.link }}">See it in action<a/></p>
 {% endif %}
 {% if code_page.binary_path %}
-<p><a href="{{ STATIC_URL }}code_page/{{ code_page.binary }}">Check out the download</a></p>
+<p><a href="{{ code_page.binary.url }}">Check out the download</a></p>
 {% endif %}
 
 {{ code_page.description|linebreaks }}
