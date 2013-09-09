@@ -18,29 +18,9 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-#mysql
+#replaced by local.py or production.py
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'whenther_microblog', 
-        # The following settings are not used with sqlite3:
-        'USER': 'whenther_django',
-        'PASSWORD': '$+8.@h%;Sn!-',
-        'HOST': '',
-        'PORT': '',
-    }
-}
-
-#sqlite3
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', 
-        'NAME': '/home/whenther/dbs/microblog.db',
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
     }
 }
 
