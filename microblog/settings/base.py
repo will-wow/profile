@@ -13,7 +13,7 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 DEBUG = False
 
 ADMINS = (
-    ('will', 'william.lee.wagner@gmail.com'),
+    ('will', 'will@whentheresawill.net'),
 )
 
 MANAGERS = ADMINS
