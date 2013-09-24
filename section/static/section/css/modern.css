@@ -1,0 +1,141 @@
+html{
+    height:101%;
+    margin:0;
+    padding:0;}
+
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+    background-image:url('/static/section/img/concrete.jpg');
+    background-color:#3c3a42;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    font-family:Oxygen, Sans-Serif;
+}
+
+.container{
+    min-height:100%;
+    position:relative;
+}
+
+a {text-decoration:none;}
+
+.title-container h1 {
+    padding-top:1em;
+    margin:0;
+	font-size:4em;
+	text-transform: uppercase;
+	font-family: 'Bevan', San-Serif;
+	color:#e4e4e4;
+	font-weight: 400;
+	text-align:center;
+}
+
+.nav-bar{
+    background-color:#e4e4e4;
+    height: 100px;
+    line-height:100px;
+}
+nav{
+    margin: 0 auto;
+    width:80%;
+    height:100%;
+}
+.menu-a{
+    color: black;
+	font-size:1.5em;
+	text-transform: uppercase;
+	text-align:center;
+	font-family: 'Bevan', San-Serif;
+	font-weight: 400;
+    min-width:100px;
+    width:24%;
+    display: inline-block;
+}
+
+.menu-a:hover{background-color:#ededed}
+.menu-a:active{background-color:#f2f4f5}
+
+.menu-curr{background-color:#f2f4f5}
+.menu-curr:hover{background-color:#f2f4f5}
+
+.page{
+    min-height:400px;
+    margin:0;
+}
+
+.page-0{background-color:#f2f4f5;}
+
+.page-1{background-color:#e4e4e4;}
+
+.page-head{
+    display:block;
+    clear:both;
+    font-family:Bevan, Sans-Serif;
+    font-size:1.25em;
+    text-align:center;
+    padding-top:1em;
+}
+
+.grid-container {
+    width:85%;
+    height:90%;
+    margin:0 auto;
+}
+
+.grid{
+    display:inline-block;
+    vertical-align:text-top;
+}
+
+.grid-full{width:100%;}
+
+.grid-half{width:49%;}
+
+.grid-third{width:33%;}
+
+.grid-quarter{width:24%;}
+
+.grid-img{width:100%;}
+
+.page-front{
+    color:#f2f4f5;
+    text-align:center;
+    margin-top:5em;
+    width:80%;
+    margin:5% auto 0 auto;
+    min-height:0px;
+    
+}
+
+.page-front a{
+    font-size:1.5em;
+    font-weight:700;
+    text-decoration:none;
+    color:orange;
+}
+
+.footer-blocker{height:100px;}
+
+footer{
+    height:100px;
+    line-height:50px;
+    color:#f2f4f5;
+    vertical-align:baseline;
+    bottom:0;
+    position:absolute;
+    width:100%;
+    
+    background: -moz-linear-gradient(top,  rgba(10,10,10,0.5) 0%, rgba(10,10,10,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(10,10,10,0.5)), color-stop(100%,rgba(10,10,10,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(10,10,10,0.5) 0%,rgba(10,10,10,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(10,10,10,0.5) 0%,rgba(10,10,10,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(10,10,10,0.5) 0%,rgba(10,10,10,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(10,10,10,0.5) 0%,rgba(10,10,10,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#800a0a0a', endColorstr='#0a0a0a',GradientType=0 ); /* IE6-9 */
+}
+footer a{color:#f2f4f5;}
+footer a:hover{color:orange;}
+footer .grid{vertical-align:baseline;}

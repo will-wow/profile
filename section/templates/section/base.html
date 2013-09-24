@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>When there's a Will... {% block page_title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href='{{ STATIC_URL }}section/css/modern.css'/>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,700|Bevan' rel='stylesheet' type='text/css'>
+    {% block links %}
+    {% endblock %}
+    <link rel="shortcut icon" type="image/ico"  href="http://www.whentheresawill.net/favicon.ico"/>
+</head>
+<body><div class=container>
+    <div class='top-head'>
+        <div class='title-container'><a href="/modern"><h1>When there's a Will...</h1></a></div>
+    </div>
+	{% block content %}
+    {% endblock %}
+	<div class='footer-blocker'></div>
+	<footer>
+	    {% for grid in footer_grid_list %}
+        {% ifequal grid.slice.id footer_slice.id %}
+        <div class='grid grid-{{ grid.size }}'><div class='grid-container'>
+            <h3>{{ grid.header }}</h3>
+            {{ grid.content }}
+        </div></div>
+        {% endifequal %}
+        {% endfor %}
+	</footer>
+</div></body>
+</html>

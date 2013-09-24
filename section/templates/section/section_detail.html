@@ -1,0 +1,59 @@
+{% extends "section/base.html" %}
+
+{% block page_title %}{{ section.title }}{% endblock %}
+
+{% block links %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}section/css/shCoreEclipse.css"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}section/css/shThemeEclipse.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}section/js/shCore.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}section/js/shAutoloader.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class='nav-bar'><nav>
+    {% for nav in nav_list %}
+    {% ifequal nav.id section.id %}
+    <a class='menu-a menu-curr' href="/modern/{{ nav.slug }}">{{ nav.title }}</a>
+    {% else %}
+    <a class='menu-a' href="/modern/{{ nav.slug }}">{{ nav.title }}</a>
+    {% endifequal %}
+    {% endfor %}
+</nav></div>
+{% for slice in slice_list %}
+<div class='page page-{{ slice.type }}'>
+    <div class='page-head'>Title</div>
+    {% for grid in grid_list %}
+        {% ifequal grid.slice.id slice.id %}
+        <div class='grid grid-{{ grid.size }}'><div class='grid-container'>
+            <h3>{{ grid.header }}</h3>
+                {% if grid.img %}
+                <img class=grid-img src='{{ grid.img.url }}' title='{{ grid.content }}'/>
+                {% else %}
+                {% if grid.language %}
+                <pre class='brush: {{ grid.language }}'>
+                {% endif %}
+                    {{ grid.content }}
+                {% if grid.language %}
+                </pre>
+                {% endif %}
+                {% endif %}
+        </div></div>
+        {% endifequal %}
+    {% endfor %}
+{% empty %}
+<div class='page page-0'><div class='grid grid-full'><div class='grid-container'>
+<h2>Oops! It looks like the database is down. Check back soon!</h2>
+</div></div></div>
+{% endfor %}
+
+<script type="text/javascript">
+    SyntaxHighlighter.autoloader(
+    'py python                {{ STATIC_URL }}section/js/shBrushPython.js',
+    'js jscript javascript    {{ STATIC_URL }}section/js/shBrushJScript.js',
+    'sql mysql                {{ STATIC_URL }}section/js/shBrushSql.js',
+    'vb vbnet                 {{ STATIC_URL }}section/js/shBrushVb.js'
+    );
+    SyntaxHighlighter.all();
+</script>
+    
+{% endblock %}
