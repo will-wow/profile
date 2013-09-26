@@ -12,6 +12,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^sitePass', views.sitePassView, name='sitePass'),
-    url(r'^', include('section.urls', namespace='section')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('section.urls', namespace='section')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

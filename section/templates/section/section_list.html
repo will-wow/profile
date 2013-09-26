@@ -1,12 +1,12 @@
 {% extends "section/base.html" %}
     
 {% block content %}
-    <div class='page page-front'>
+    <div class='slice slice-front'><div class='slice-container'>
         {% for nav in nav_list %}
         <div class='grid grid-quarter'><div class='grid-container'>
-        <a href='/modern/{{ nav.slug }}'>{{ nav.title }}</a>
+        <a href="{% url 'section:section' nav.slug %}">{{ nav.title }}</a>
         <p>{{ nav.blurb }}</p>
         </div></div>
         {% endfor %}
-    </div>
+    </div></div>
 {% endblock %}

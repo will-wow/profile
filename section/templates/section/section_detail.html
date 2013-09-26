@@ -13,35 +13,34 @@
 <div class='nav-bar'><nav>
     {% for nav in nav_list %}
     {% ifequal nav.id section.id %}
-    <a class='menu-a menu-curr' href="/modern/{{ nav.slug }}">{{ nav.title }}</a>
+    <a class='menu-a menu-curr' href="{% url 'section:section' nav.slug %}">{{ nav.title }}</a>
     {% else %}
-    <a class='menu-a' href="/modern/{{ nav.slug }}">{{ nav.title }}</a>
+    <a class='menu-a' href="{% url 'section:section' nav.slug %}">{{ nav.title }}</a>
     {% endifequal %}
     {% endfor %}
 </nav></div>
 {% for slice in slice_list %}
-<div class='page page-{{ slice.type }}'>
-    <div class='page-head'>Title</div>
+<div class='slice slice-{{ slice.type }}'><div class='slice-container'>
+    <div class='slice-head'>Title</div>
     {% for grid in grid_list %}
-        {% ifequal grid.slice.id slice.id %}
-        <div class='grid grid-{{ grid.size }}'><div class='grid-container'>
-            <h3>{{ grid.header }}</h3>
-                {% if grid.img %}
-                <img class=grid-img src='{{ grid.img.url }}' title='{{ grid.content }}'/>
-                {% else %}
-                {% if grid.language %}
-                <pre class='brush: {{ grid.language }}'>
-                {% endif %}
-                    {{ grid.content }}
-                {% if grid.language %}
-                </pre>
-                {% endif %}
-                {% endif %}
-        </div></div>
-        {% endifequal %}
+    {% ifequal grid.slice.id slice.id %}
+    <div class='grid grid-{{ grid.size }}'><div class='grid-container'>
+        <h3>{{ grid.header }}</h3>
+        {% if grid.img %}
+        <img class=grid-img src='{{ grid.img.url }}' title='{{ grid.content }}'/>
+        {% else %}
+        {% if grid.language %}
+        <pre class='brush: {{ grid.language }}'>{{ grid.content }}</pre>
+        {% else %}
+        {{ grid.content }}
+        {% endif %}
+        {% endif %}
+    </div></div>
+    {% endifequal %}
     {% endfor %}
+</div></div>
 {% empty %}
-<div class='page page-0'><div class='grid grid-full'><div class='grid-container'>
+<div class='slice slice-0'><div class='grid grid-full'><div class='grid-container'>
 <h2>Oops! It looks like the database is down. Check back soon!</h2>
 </div></div></div>
 {% endfor %}

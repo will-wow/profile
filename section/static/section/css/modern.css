@@ -61,16 +61,20 @@ nav{
 .menu-curr{background-color:#f2f4f5}
 .menu-curr:hover{background-color:#f2f4f5}
 
-.page{
+.slice{
     min-height:400px;
     margin:0;
 }
+.slice-contianer{
+    max-width:1350px;
+    margin:0 auto;
+}
 
-.page-0{background-color:#f2f4f5;}
+.slice-0{background-color:#f2f4f5;}
 
-.page-1{background-color:#e4e4e4;}
+.slice-1{background-color:#e4e4e4;}
 
-.page-head{
+.slice-head{
     display:block;
     clear:both;
     font-family:Bevan, Sans-Serif;
@@ -100,17 +104,15 @@ nav{
 
 .grid-img{width:100%;}
 
-.page-front{
+.slice-front{
     color:#f2f4f5;
     text-align:center;
     margin-top:5em;
     width:80%;
     margin:5% auto 0 auto;
-    min-height:0px;
-    
+    min-height:0;
 }
-
-.page-front a{
+.slice-front a{
     font-size:1.5em;
     font-weight:700;
     text-decoration:none;
