@@ -14,4 +14,4 @@ urlpatterns = patterns('',
     url(r'^sitePass', views.sitePassView, name='sitePass'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('section.urls', namespace='section')),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
