@@ -20,8 +20,7 @@
 	    {% for grid in footer_grid_list %}
         {% ifequal grid.slice.id footer_slice.id %}
         <div class='grid grid-{{ grid.size }}'><div class='grid-container'>
-            <h3>{{ grid.header }}</h3>
-            {{ grid.content }}
+            {{ grid.content|safe }}
         </div></div>
         {% endifequal %}
         {% endfor %}

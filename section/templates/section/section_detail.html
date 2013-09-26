@@ -28,12 +28,10 @@
         <h3>{{ grid.header }}</h3>
         {% if grid.img %}
         <img class=grid-img src='{{ grid.img.url }}' title='{{ grid.content }}'/>
-        {% else %}
-        {% if grid.language %}
+        {% elif grid.language %}
         <pre class='brush: {{ grid.language }}'>{{ grid.content }}</pre>
         {% else %}
-        {{ grid.content }}
-        {% endif %}
+        {{ grid.content|safe }}
         {% endif %}
     </div></div>
     {% endifequal %}
