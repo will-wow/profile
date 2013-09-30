@@ -49,7 +49,7 @@ class Grid(models.Model):
     # if anything, it's code
     language = models.CharField(max_length=16, blank=True)
     # if anything, it's an img
-    img = models.ImageField(upload_to='section/img', blank=True)
+    img = models.FileField(upload_to='section/img', blank=True)
     
     class Meta:
         ordering = ['sort_key']
