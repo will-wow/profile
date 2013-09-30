@@ -22,6 +22,7 @@ class Slice(models.Model):
     '''Contianer for Grid blocks'''
     section = models.ForeignKey(Section)
     sort_key = models.IntegerField(default=0)
+    title = models.CharField(max_length=225, blank=True)
     
     class Meta:
         ordering = ['sort_key']

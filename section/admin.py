@@ -13,7 +13,7 @@ class SectionAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('title',)}
 
 class SliceAdmin(admin.ModelAdmin):
-    fields = ('section', 'sort_key')
+    fields = ('section', 'sort_key', 'title')
     
     list_display = ['section', 'sort_key']
     list_display_links = ['sort_key']
