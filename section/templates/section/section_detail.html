@@ -22,7 +22,7 @@
 {% for slice in slice_list %}
 <div class='slice slice-{{ slice.type }}'><div class='slice-container'>
     {% if slice.title %}
-    <div class='slice-head'>Title</div>
+    <div class='slice-head'>{{ slice.title }}</div>
     {% endif %}
     {% for grid in grid_list %}
     {% ifequal grid.slice.id slice.id %}
@@ -33,7 +33,7 @@
         {% elif grid.language %}
         <pre class='brush: {{ grid.language }}'>{{ grid.content }}</pre>
         {% else %}
-        {{ grid.content|safe }}
+        {{ grid.content|safe|linebreaks }}
         {% endif %}
     </div></div>
     {% endifequal %}

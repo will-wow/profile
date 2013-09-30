@@ -15,3 +15,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('section.urls', namespace='section')),
 )
+
+if settings.DEBUG:
+    urlpatterns += patterns('',
+         (r'^static/(?P<path>.*)$', 'django.views.static.serve'),
+    )
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

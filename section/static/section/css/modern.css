@@ -78,13 +78,13 @@ nav{
     display:block;
     clear:both;
     font-family:Bevan, Sans-Serif;
-    font-size:1.25em;
+    font-size:1.5em;
     text-align:center;
     padding-top:1em;
 }
 
 .grid-container {
-    width:85%;
+    width:80%;
     height:90%;
     margin:0 auto;
 }
