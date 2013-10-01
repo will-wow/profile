@@ -37,11 +37,12 @@ class Grid(models.Model):
         ('full', 'Full'),
         ('half', 'Half'),
         ('third', 'Third'),
+        ('two-thirds','Two-Thirds'),
         ('quarter', 'Quarter'),
     )
     
     slice = models.ForeignKey(Slice)
-    size = models.CharField(max_length=7, choices=GRID_CHOICES)
+    size = models.CharField(max_length=10, choices=GRID_CHOICES)
     sort_key = models.IntegerField(default=0)
     header = models.CharField(max_length=255, blank=True)
     # holds content, or image title text

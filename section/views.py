@@ -1,6 +1,15 @@
 from .models import Section, Slice, Grid
 from django.views.generic import DetailView, ListView
 
+def get_max(grid_list):
+    max = 0
+    max_id = 0
+    for grid in grid_list:
+        if grid.sort_key > max:
+            max = grid.sort_key
+            max_id = grid.id
+    return max_id
+
 class SectionView(DetailView):
     model = Section
     
@@ -12,8 +21,13 @@ class SectionView(DetailView):
         context['grid_list'] = []
         # filter the grids and add them
         for slice in context['slice_list']:
+            # set the type
             slice.type = (slice.sort_key + 1) % 2
-            context['grid_list'] += Grid.objects.filter(slice=slice.id)
+            # get the grids
+            slice_grids = Grid.objects.filter(slice=slice.id)
+            slice.max = get_max(slice_grids)
+            context['grid_list'] += slice_grids
+        
         # header
         context['nav_list'] = Section.objects.exclude(slug='footer')
         # footer

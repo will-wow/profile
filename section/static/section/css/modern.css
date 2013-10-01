@@ -3,7 +3,7 @@ html{
     margin:0;
     padding:0;}
 
-body {
+body{
     margin:0;
     padding:0;
     height:100%;
@@ -65,7 +65,9 @@ nav{
     min-height:400px;
     margin:0;
 }
-.slice-contianer{
+
+.slice-container{
+    width:85%;
     max-width:1350px;
     margin:0 auto;
 }
@@ -84,10 +86,13 @@ nav{
 }
 
 .grid-container {
-    width:80%;
-    height:90%;
-    margin:0 auto;
+    width:90%;
+    padding:5% 0;
 }
+
+.grid-cont-left {margin:0 auto 0 0;}
+.grid-cont-mid {margin:0 auto;}
+.grid-cont-right {margin:0 0 0 auto;}
 
 .grid{
     display:inline-block;
@@ -99,6 +104,8 @@ nav{
 .grid-half{width:49%;}
 
 .grid-third{width:33%;}
+
+.grid-two-thirds{width:66%;}
 
 .grid-quarter{width:24%;}
 
@@ -141,3 +148,4 @@ footer{
 footer a{color:#f2f4f5;}
 footer a:hover{color:orange;}
 footer .grid{vertical-align:baseline;}
+footer .grid-container{padding:0;}
