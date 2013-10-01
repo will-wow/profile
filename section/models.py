@@ -53,7 +53,7 @@ class Grid(models.Model):
     img = models.FileField(upload_to='section/img', blank=True)
     
     class Meta:
-        ordering = ['sort_key']
+        ordering = ['slice__section__title', 'slice__sort_key', 'sort_key']
     
     def __unicode__(self):
         return '{0}-{1}'.format(self.slice, self.sort_key)

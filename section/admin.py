@@ -34,6 +34,7 @@ class GridAdmin(admin.ModelAdmin):
     list_display_links = ['sort_key']
     list_filter = ('slice__section__title', 'slice__sort_key')
     
+    
 admin.site.register(Section, SectionAdmin) 
 admin.site.register(Slice, SliceAdmin)
 admin.site.register(Grid, GridAdmin)
