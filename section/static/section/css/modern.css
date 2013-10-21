@@ -1,3 +1,4 @@
+/* BASE STYLE (all sizes) */
 html{
     height:101%;
     margin:0;
@@ -15,6 +16,8 @@ body{
     font-family:Oxygen, Sans-Serif;
 }
 
+body a{color:black;}
+
 .container{
     min-height:100%;
     position:relative;
@@ -23,9 +26,9 @@ body{
 a {text-decoration:none;}
 
 .title-container h1 {
-    padding-top:1em;
+    padding-top:.5em;
     margin:0;
-	font-size:4em;
+	font-size:2em;
 	text-transform: uppercase;
 	font-family: 'Bevan', San-Serif;
 	color:#e4e4e4;
@@ -35,23 +38,23 @@ a {text-decoration:none;}
 
 .nav-bar{
     background-color:#e4e4e4;
-    height: 100px;
-    line-height:100px;
+    height: 120px;
+    line-height:60px;
 }
 nav{
     margin: 0 auto;
-    width:80%;
+    width:100%;
     height:100%;
 }
 .menu-a{
     color: black;
-	font-size:1.5em;
+	font-size:1em;
 	text-transform: uppercase;
 	text-align:center;
 	font-family: 'Bevan', San-Serif;
 	font-weight: 400;
     min-width:100px;
-    width:24%;
+    width:49.5%;
     display: inline-block;
 }
 
@@ -80,7 +83,7 @@ nav{
     display:block;
     clear:both;
     font-family:Bevan, Sans-Serif;
-    font-size:1.5em;
+    font-size:1.17em;
     text-align:center;
     padding-top:1em;
 }
@@ -88,26 +91,15 @@ nav{
 .grid-container {
     width:90%;
     padding:5% 0;
+    margin:0 auto;
 }
-
-.grid-cont-left {margin:0 auto 0 0;}
-.grid-cont-mid {margin:0 auto;}
-.grid-cont-right {margin:0 0 0 auto;}
 
 .grid{
     display:inline-block;
     vertical-align:text-top;
+    width:100%;
 }
-
-.grid-full{width:100%;}
-
-.grid-half{width:49%;}
-
-.grid-third{width:33%;}
-
-.grid-two-thirds{width:66%;}
-
-.grid-quarter{width:24%;}
+.grid h3{font-size:1em;}
 
 .grid-img{width:100%;}
 
@@ -126,15 +118,8 @@ nav{
     color:orange;
 }
 
-.footer-blocker{height:100px;}
-
 footer{
-    height:100px;
-    line-height:50px;
     color:#f2f4f5;
-    vertical-align:baseline;
-    bottom:0;
-    position:absolute;
     width:100%;
     
     background: -moz-linear-gradient(top,  rgba(10,10,10,0.5) 0%, rgba(10,10,10,1) 100%); /* FF3.6+ */
@@ -148,4 +133,53 @@ footer{
 footer a{color:#f2f4f5;}
 footer a:hover{color:orange;}
 footer .grid{vertical-align:baseline;}
+footer .grid-container{padding:5px 0;}
+
+/* Desktop */ 
+@media screen and (min-width: 860px) {
+.title-container h1 {
+    padding-top:1em;
+	font-size:3em;
+}
+
+.nav-bar{
+    height: 100px;
+    line-height:100px;
+}
+nav{width:80%;}
+.menu-a{
+	font-size:1.25em;
+    width:24%;
+}
+
+.slice-head{font-size:1.5em;}
+
+.grid-full{width:100%;}
+.grid-half{width:49%;}
+.grid-third{width:33%;}
+.grid-two-thirds{width:66%;}
+.grid-quarter{width:24%;}
+
+.grid-container {margin:0;}
+.grid h3{font-size:1.17em;}
+.grid-cont-left {margin:0 auto 0 0;}
+.grid-cont-mid {margin:0 auto;}
+.grid-cont-right {margin:0 0 0 auto;}
+
+.footer-blocker{height:100px;}
+footer{
+    vertical-align:baseline;
+    bottom:0;
+    position:absolute;
+    height:100px;
+    line-height:50px;
+}
 footer .grid-container{padding:0;}
+} 
+
+/* Big Desktop */ 
+@media screen and (min-width: 1024px) {
+.title-container h1 {font-size:4em;}
+
+.menu-a{font-size:1.5em;}  
+}
