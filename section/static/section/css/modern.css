@@ -16,14 +16,16 @@ body{
     font-family:Oxygen, Sans-Serif;
 }
 
-body a{color:black;}
+body a{
+    color:#E68702;
+    text-decoration:none;
+}
+body a:hover{color:#A35F00;}
 
 .container{
     min-height:100%;
     position:relative;
 }
-
-a {text-decoration:none;}
 
 .title-container h1 {
     padding-top:.5em;
@@ -58,11 +60,22 @@ nav{
     display: inline-block;
 }
 
-.menu-a:hover{background-color:#ededed}
-.menu-a:active{background-color:#f2f4f5}
-
-.menu-curr{background-color:#f2f4f5}
-.menu-curr:hover{background-color:#f2f4f5}
+.menu-a:hover{
+    background-color:#ededed;
+    color:black;
+}
+.menu-a:active{
+    background-color:#f2f4f5;
+    color:black;
+}
+.menu-curr{
+    background-color:#f2f4f5;
+    color:black;
+}
+.menu-curr:hover{
+    background-color:#f2f4f5;
+    color:black;
+}
 
 .slice{
     min-height:400px;
@@ -115,7 +128,7 @@ nav{
     font-size:1.5em;
     font-weight:700;
     text-decoration:none;
-    color:orange;
+    color:#E68702;
 }
 
 footer{
