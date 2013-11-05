@@ -1,0 +1,135 @@
+use microblog;
+
+DELETE FROM section_section;
+INSERT INTO section_section VALUES(1,'About',1,'about','This is where I tell you all about myself. Fascinating!');
+INSERT INTO section_section VALUES(2,'Code',2,'code','I''m a fair coder, and I''m learning more every day. I''ve made some handy tools, which are freely available.');
+INSERT INTO section_section VALUES(3,'Design',3,'design','I don''t just build things that work - I make them look good while doing it.');
+INSERT INTO section_section VALUES(4,'Words',4,'words','The best tools and analysis are useless if you can''t explain them. Luckily, I can do that too.');
+INSERT INTO section_section VALUES(5,'footer',0,'footer','');
+
+DELETE FROM section_slice;
+INSERT INTO section_slice VALUES(1,5,1,'');
+INSERT INTO section_slice VALUES(2,1,1,'');
+INSERT INTO section_slice VALUES(3,2,2,'Better call a vet, because these Pythons are sick.');
+INSERT INTO section_slice VALUES(4,2,3,'VBA & Excel: Better living through automation.');
+INSERT INTO section_slice VALUES(5,2,4,'Databases: MySQL and Access');
+INSERT INTO section_slice VALUES(6,3,1,'Newspaper Design');
+INSERT INTO section_slice VALUES(7,3,2,'Vector Art');
+INSERT INTO section_slice VALUES(8,1,2,'');
+INSERT INTO section_slice VALUES(9,1,3,'');
+INSERT INTO section_slice VALUES(10,1,4,'');
+INSERT INTO section_slice VALUES(11,4,1,'San Francisco Young Democrats');
+INSERT INTO section_slice VALUES(12,2,1,'Web: HTML5/CSS/Javascript');
+
+DELETE FROM section_grid;
+INSERT INTO section_grid VALUES(1,1,'half',1,'','This site is still under construction. More content is coming soon!','','');
+INSERT INTO section_grid VALUES(2,1,'quarter',2,'','<a href=''mailto:will@whentheresawill.net''>Contact Me!</a>','','');
+INSERT INTO section_grid VALUES(3,1,'quarter',3,'','Will Lee-Wagner 2013','','');
+INSERT INTO section_grid VALUES(4,2,'two-thirds',1,'... there''s a way. And I''m Will.','Talking about myself was a lot more difficult than I was expecting! I''ll be updating this section once I have something to post here.','','');
+INSERT INTO section_grid VALUES(5,3,'third',1,'Coding everything.','I''m a fairly recent convert to the church of Python-ology, but I''ve quickly grown to love it. The site you''re reading now written in <a href=''https://www.djangoproject.com/''>Django</a>, the Python web framework.
+
+Learning Python has been great, because I''m a generalist - and this language does everything. I''ve used it to set up a pretty site, sure. But I''ve also used it to automatically check large data sets, like address lists, and to powerfully administer MySQL. Check out some of the cool stuff I''ve done with this awesome language!','','');
+INSERT INTO section_grid VALUES(6,3,'two-thirds',2,'A sample method from a class to verify addresses against post office data:','def check_file(self, file):
+    ''''''check_file: check a given file against the zip database''''''
+    # get the dictionary of correct info
+    zips = self.zips
+    
+    # make headers for the log files
+    self._print_headers(file)
+    
+    with open(file.file) as f: #open the user''s file
+        reader = csv.reader(f)
+        for r in reader: # for each row
+            zip = r[file.c(''zip'').col][0:5] #get the 5-digit zip for lookup (still return the full zip)
+            if zip not in zips: #if the zip code is not in the zip db
+                file.c(''zip'').writer.writerow(file.base_row(r))
+            else: # if the zip is in the db, check the check columns
+                for c in file.cols:
+                    if c.title != ''zip'' and c.check:
+                        # check if the given value = or is in the db values for that zip
+                        check_value = zips[zip][self.db_cols[c.title]]
+                        if isinstance(check_value,list): # multiple ciites
+                            in_check = r[c.col].lower() not in check_value
+                        else: #single value
+                            in_check = r[c.col].lower() != check_value
+                        if in_check: # if either test was true:
+                            print_row = list(file.base_row(r))
+                            #append the checked column 
+                            print_row.append(self._case_value(check_value))
+                            # write to the file
+                            c.writer.writerow(print_row)
+    # close the bad_col files
+    file.close_files()','python','');
+INSERT INTO section_grid VALUES(7,4,'two-thirds',1,'','I got my start in professional coding with VBA: Microsoft''s Visual Basic for Applications. It comes with all the Office products, but I''ve mostly used it with Excel and Access. At this point I''ve been using VBA for over a year, and I''ve gotten pretty handy with it.
+
+In Excel, I''ve used VBA to automate saving data from custom userforms to spreadsheets, auto-filling and printing forms, doing advanced data validation, and more. Most of the office I work at now is using at least one of my automated forms.
+
+I''ve also created a few handy Excel user-defined functions and macros, which I''ve packaged as an add-in. It allows you to hit Ctrl-Shift-C to copy just the text from a cell, and Ctrl-Shift-V to paste without formatting. It also adds two few workbook functions, which you can use to generate random names and randomly assign cells to a number of people (for an audit, say).
+
+Download the Excel 2003 version here
+Download the Excel 2007+ version here','','');
+INSERT INTO section_grid VALUES(8,4,'third',2,'CopyTextOnly():','Sub CopyTextOnly()
+    ''An add-in to coyp only the text, not the cell(s), from a selection
+    ''Shortcut: CTRL-SHIFT-C
+    Dim DataObj As New MSForms.DataObject
+    Dim selectionStart As Range
+    Dim copyText As String
+    
+    On Error Resume Next
+    Set selectionStart = Selection.Cells(1, 1)
+    copyText = selectionStart.Text
+    DataObj.SetText copyText
+    DataObj.PutInClipboard
+    On Error GoTo 0
+End Sub','vb','');
+INSERT INTO section_grid VALUES(10,5,'quarter',1,'MySQL: Powerful and Open','Right now, I''m working on a MySQL certificate from City College of San Francisco. I''ve taken a querying class, and I''m in a MySQL Database Administrator class right now, where I''m learning to run a MySQL server, and use Python to automate it.
+
+I''m pretty handy with SQL queries at this point. That skill translates well between database management systems, though I''ve only used MySQL and Access functions, and there are some differences in abilities and syntax between the DBMSs.
+
+Also, this site is running on MySQL.','','');
+INSERT INTO section_grid VALUES(11,5,'quarter',3,'Access: Rapid development','Using Access is what got me into databases in the first place. Although its engine, ACE, is fairly limited, Access''s forms, reports, and query designers make it hard to beat in terms of rapid development. Using Access allows me to leverage my skills with VBA, graphic design, and SQL to build applications.
+
+I''ve built a multi-user employee database application, and am working on a messages application with a MySQL back-end.','','');
+INSERT INTO section_grid VALUES(12,5,'quarter',4,'A screenshot of my Access employee database:','Employee screen','','section/img/DB_3_Employees.PNG');
+INSERT INTO section_grid VALUES(13,5,'quarter',2,'Displaying the three shortest books from each publisher in a books database:','SELECT publ_id, title, page_count, Rank
+FROM (
+	SELECT publ_id, title, page_count
+	,(	SELECT COUNT(DISTINCT b2.page_count)
+		FROM a_bkinfo.publishers p2
+		JOIN a_bkinfo.books b2 USING (publ_id)
+		WHERE b2.page_count <= b.page_count
+		AND b2.publ_id = b.publ_id) Rank
+	FROM a_bkinfo.publishers p
+	JOIN a_bkinfo.books b USING (publ_id)
+	WHERE NOT b.page_count IS NULL )pb
+WHERE Rank <= 3
+ORDER BY publ_id, Rank','sql','');
+INSERT INTO section_grid VALUES(14,2,'quarter',2,'','I''m Will!','','section/img/headshot_med.jpg');
+INSERT INTO section_grid VALUES(15,6,'half',1,'','I was the production manager of my college newspaper, <a href=''http://thehullabaloo.com''>The Tulane Hullabaloo</a>, in 2010, and was both the head designer and in charge of the whole visual side of the paper, including photography and the website. I completed a major redesign of the newspaper, and the layout team won two design awards in the national <a href=''http://msusnd.org/contest/2010contest/''>Michigan State University Design Contest</a> in 2010.
+
+News design is fun because it''s a problem to solve: how to fit all the given copy and art into a fixed space in a visually striking way, while on a strict deadline.
+
+Here are a couple samples of pages I designed:','','');
+INSERT INTO section_grid VALUES(16,6,'quarter',2,'','Who ''Dat news page','','section/img/Who-Dat.png');
+INSERT INTO section_grid VALUES(17,6,'quarter',3,'','unrest news page','','section/img/Unrest.png');
+INSERT INTO section_grid VALUES(18,7,'third',2,'','ellis logo','','section/img/ellis_logo.png');
+INSERT INTO section_grid VALUES(19,7,'third',1,'','I have some experience with designing vector art, mostly with the open source <a href=''http://inkscape.com''>Inkscape</a>. I''ve made logos, posters, infographics, and images just for fun. 
+
+Here are a couple of samples of my work. The logo is for <a href=''http://elliscamera.com/''>Ellis Photography</a>, which manufactures specialty photography equipment. The turtle is mostly just adorable.','','');
+INSERT INTO section_grid VALUES(20,7,'quarter',3,'','beach turtle','','section/img/beach_turtle.png');
+INSERT INTO section_grid VALUES(21,8,'half',1,'<a href=''/code''>Code</a>','I''m learning more about coding every day, and I have alrady done some pretty interesting stuff. This shows some samples of what I''ve been up to. I''ve also posted source code and links to projects that folks might find useful - mostly Excel add-ins, right now. Check it out!','','');
+INSERT INTO section_grid VALUES(22,9,'half',1,'<a href=''/design''>Design</a>','While I did some newspaper design in high school, I really go into it in college. I ran the design department at my college newspaper, and I''d like to think did good work there in InDesign. I''m also handy with vector art, and have put together some nice logos and graphics. I''m always open to freelance work - so take a look at what I''ve done!
+
+Lately, I''ve been spending a lot of time learning web design as well. This site is a product of that quest.','','');
+INSERT INTO section_grid VALUES(23,10,'half',1,'<a href=''/words''>Words</a>','I fancy myself a pretty decent writer and communicator. I wrote for my high school and college newspapers, and put together my share of economics papers in college. I also dabble in fiction writing, though we''ll see if any of that gets posted here!','','');
+INSERT INTO section_grid VALUES(24,11,'full',0,'','As a fairly new member of the San Francisco Young Democracts communications committee, I''m mostly working on redesigning their website (look for a link to that soon!). But, I may also do some posting from time to time. Here are a couple links to some summaries of San Francisco ballot measures I''ve done:
+
+<a href=http://www.sfyd.org/ballot_measure_summaries_proposition_a>Proposition A</a>
+<a href=http://www.sfyd.org/ballot_measure_summaries_proposition_d>Proposition D</a>','','');
+INSERT INTO section_grid VALUES(25,12,'two-thirds',1,'','These days, it doesn''t matter what you do: if you want to show it off, you also have to know the web. I do a lot of pretty cool stuff, and I needed to platform to put it on. So, between forums and books (I read and loved Ethan Marcotte''s <a href=''http://www.abookapart.com/products/responsive-web-design''>Responsive Web Design</a>) I''ve developed a good working knowledge of how to design for the modern web.
+
+While this site is my single biggest project, I''ve also put together a handy password generator using JavaScript. It''s called sitePass, and it generates passwords by using a secure one-way hash of a website''s name and a password. That lets you generate strong passwords for each of your (many) logins, while only having to remember one. And since it uses a one-way hash, if an attacker gets their hands on one of your passwords, they can''t use it to get the rest. Useful!
+
+It''s free to use, check it out <a href=''/sitePass''>here!</a>','','');
+INSERT INTO section_grid VALUES(26,12,'third',2,'','sitePass','','section/img/sitePass.png');
+

@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'section',
-    'code_page',
+    'address_checker',
 )
 
 # A sample logging configuration. The only tangible logging
