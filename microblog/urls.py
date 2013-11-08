@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^sitePass', views.sitePassView, name='sitePass'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^addresses/', include('address_checker.urls', namespace='address_checker')),
     url(r'^', include('section.urls', namespace='section')),
 )
 

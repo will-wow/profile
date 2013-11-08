@@ -131,6 +131,22 @@ nav{
     color:#E68702;
 }
 
+
+tr th{
+    text-align:left;
+}
+input{
+    padding-top:.25em;
+    padding-bottom:.25em;
+    border: 1px solid #cccccc;
+    text-indent:.5em;
+}
+input[type="submit"]{
+    text-indent:0;
+    padding:.5em 2em;
+}
+
+
 footer{
     color:#f2f4f5;
     width:100%;

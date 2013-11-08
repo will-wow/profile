@@ -34,8 +34,6 @@ p{
 input{
     width:100%;
     display: block;
-    padding-top:.25em;
-    padding-bottom:.25em;
     text-indent:.5em;
     border-radius:.5em;
     border: 1px solid #cccccc;

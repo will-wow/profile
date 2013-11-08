@@ -77,19 +77,18 @@ class Splitter_Regex():
         self.s = Suffixes()
         
         # set up the patterns for addresses
-        re_num = r"^(?:((?:[0-9,&/ -]|and)*(?:[a-z])?) )"
-        re_dir = r"(?:(NORTH|SOUTH|EAST|WEST|[NSEW]) )?"
-        re_alphaStreet = r"(?: ([a-z])  +)"
-        re_street = r"((?:[0-9]+(?:ST|ND|RD|TH)|(?:[a-z])).*?)"
-        re_suffix = "(?: +{0}(?:\.)?(?: +(NORTH|SOUTH|EAST|WEST|[NSEW]))?(?:,? +(.*))?)?$".format(self.s.suffix_regex())
+        re_num = "^(?:((?:[0-9,&/ -]|and)*(?:(?![NSEW])[a-z])?) )"
+        re_dir = "(?:(NORTH|SOUTH|EAST|WEST|[NSEW]\.?) )?" 
+        re_street = "((?:[0-9]+(?:ST|ND|RD|TH)|(?:[a-z])).*?)"
+        re_alpha_street = "([a-z])"
+        re_suffix = "(?: +{0}(?:\.)?(?: +(NORTH|SOUTH|EAST|WEST|NW|SW|NE|SE|[NSEW]))?(?:,? +(.*))?)?$".format(self.s.suffix_regex())
         
         # compile the regex
         self.re_addr = re.compile(re_num + re_dir + re_street + re_suffix + re_dir, re.I)
-        self.re_alph = re.compile(re_num + re_dir + re_alphaStreet + re_suffix + re_dir, re.I)
+        self.re_alph = re.compile(re_num + re_dir + re_alpha_street + re_suffix + re_dir, re.I)
         self.re_attn = re.compile(r"^(ATTN|C/O)", re.I)
         self.re_po = re.compile(r"^(P[. ][ ]?O.? )", re.I)
         self.re_dash = re.compile(r" *- *", re.I)
-    
 
 class Splitter():
     '''
@@ -104,15 +103,7 @@ class Splitter():
         self.has_attn = has_attn
         
         # set up a dictionary to hold the split address
-        self.addys = {
-            'attn': '',
-            'number': '',
-            'dir1': '',
-            'street': '',
-            'suffix': '',
-            'dir2': '',
-            'possible2':''
-        }
+        self.addys = {}
         
         # split
         self.split()
@@ -132,22 +123,17 @@ class Splitter():
     def split_attn(self):
         '''check for an attn line'''
         # check the lines to see if they are attn lines
-        attn_1 = self.rs.re_attn.match(address1)
-        attn_2 = self.rs.re_attn.match(address2)
+        attn_1 = self.rs.re_attn.match(self.address1)
+        attn_2 = self.rs.re_attn.match(self.address2)
         # found in line 1
         if attn_1:
             # get the attention line
-            self.addys['attn'] = address1
+            self.addys['attn'] = self.address1
             # put line2 into line1
-            self.address1 = self.address2
-            self.address2 = ''
+            self.address1, self.address2 = self.address2, ''
         # found in line2
         elif attn_2:
-            self.addys['attn'] = self.address2
-            self.address2 = ''
-    
-    def split_alph(self, addr_matches):
-        pass
+            self.addys['attn'], self.address2 = self.address2, ''
     
     def split_addr(self, addr_matches):
         # run the regex on the regular address
@@ -182,7 +168,7 @@ class Splitter():
         
         # determine if the address is an alpha or not, a split it out
         if re_alph_1 or re_alph_2:
-            self.split_alph(self.corr_regex(re_alph_1, re_alph_2))
+            self.split_addr(self.corr_regex(re_alph_1, re_alph_2))
             return True
         elif re_addr_1 or re_addr_2:
             self.split_addr(self.corr_regex(re_addr_1, re_addr_2))
@@ -227,12 +213,19 @@ class Splitter():
                 self.addys['line2'] = self.address2
         else:
             self.addys['street'] = self.address1
-
+            self.addys['line2'] = self.address2
+            
 
 def main():
     rs = Splitter_Regex()
     sp = Splitter(rs, '123 Fake Street', '#4')
-    print(sp.addys['street'])
+    print(sp.addys)
+    sp = Splitter(rs, '123 A Street', '#4')
+    print(sp.addys)
+    sp = Splitter(rs, '123-A N Fake Street', '#4')
+    print(sp.addys)
+    sp = Splitter(rs, '123 A Fake Street', 'Attn: Bob',True)
+    print(sp.addys)
 
 if __name__ == '__main__':
     main()
