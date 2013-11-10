@@ -6,6 +6,7 @@ class Section(models.Model):
     sort_key = models.IntegerField(default=0)
     slug = models.SlugField(max_length=255, blank=True)
     blurb = models.TextField(blank=True)
+    nav = models.BooleanField()
     
     class Meta:
         ordering = ['sort_key','title']
@@ -28,7 +29,7 @@ class Slice(models.Model):
         ordering = ['sort_key']
     
     def __unicode__(self):
-        return '{0}: {1}'.format(self.section, self.sort_key)
+        return '{0}: {1} ({2})'.format(self.section, self.sort_key, self.title)
         
 
 class Grid(models.Model):
@@ -57,3 +58,22 @@ class Grid(models.Model):
     
     def __unicode__(self):
         return '{0}-{1}'.format(self.slice, self.sort_key)
+
+class Link(models.Model):
+    grid = models.ForeignKey(Grid)
+    # the text to display as a link
+    display = models.CharField(max_length=255)
+    # a link to another section
+    section_link = models.ForeignKey(Section, null=True, blank=True)
+    # a url link
+    other_link = models.CharField(max_length=225, blank=True)
+    # an uploaded file
+    file_link = models.FileField(upload_to='section/bin', blank=True)
+    
+    
+    class Meta:
+        ordering = ['grid__slice__section__title', 'grid__slice__sort_key',
+            'grid__sort_key', 'display']
+    
+    def __unicode__(self):
+        return '{0}> {1}'.format(self.grid, self.display)

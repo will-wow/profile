@@ -1,4 +1,4 @@
-from .models import Section, Slice, Grid
+from .models import Section, Slice, Grid, Link
 from django.views.generic import DetailView, ListView
 
 def get_max(grid_list):
@@ -27,9 +27,14 @@ class SectionView(DetailView):
             slice_grids = Grid.objects.filter(slice=slice.id)
             slice.max = get_max(slice_grids)
             context['grid_list'] += slice_grids
+            # links
+            context['link_list']=[]
+            for grid in context['grid_list']:
+                grid_links = Link.objects.filter(grid=grid.id)
+                context['link_list'] += grid_links
         
         # header
-        context['nav_list'] = Section.objects.exclude(slug='footer')
+        context['nav_list'] = Section.objects.exclude(slug='footer').filter(nav=True)
         # footer
         footer_section = Section.objects.filter(slug='footer')
         context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]

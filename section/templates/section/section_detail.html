@@ -41,6 +41,20 @@
         <pre class='brush: {{ grid.language }}'>{{ grid.content }}</pre>
         {% else %}
         {{ grid.content|safe|linebreaks }}
+        {% for link in link_list %}
+        {% ifequal link.grid.id grid.id %}
+        {% if link.section_link %}
+        <a href="{% url 'section:section' link.section_link %}">
+        {% elif link.other_link %}
+        <a href="{{ link.other_link }}">
+        {% elif link.file_link %}
+        <a href="{{ link.file_link.url }}">
+        {% else %}
+        <a>
+        {% endif %}
+        {{ link.display }}</a><br/>
+        {% endifequal %}
+        {% endfor %}
         {% endif %}
     </div></div>
     {% endifequal %}
