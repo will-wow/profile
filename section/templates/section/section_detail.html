@@ -44,7 +44,7 @@
         {% for link in link_list %}
         {% ifequal link.grid.id grid.id %}
         {% if link.section_link %}
-        <a href="{% url 'section:section' link.section_link %}">
+        <a href="{% url 'section:section' link.section_link.slug %}">
         {% elif link.other_link %}
         <a href="{{ link.other_link }}">
         {% elif link.file_link %}
