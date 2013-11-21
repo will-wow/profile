@@ -34,7 +34,7 @@ class SectionView(DetailView):
                 context['link_list'] += grid_links
         
         # header
-        context['nav_list'] = Section.objects.exclude(slug='footer').filter(nav=True)
+        context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key').filter(nav=True)
         # footer
         footer_section = Section.objects.filter(slug='footer')
         context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
@@ -46,7 +46,7 @@ class HomeView(ListView):
     model = Section
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key')
+        context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key').filter(nav=True)
         # footer
         footer_section = Section.objects.filter(slug='footer')
         context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
