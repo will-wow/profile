@@ -1,47 +1,59 @@
+html{height:100%;}
+
 body {
-    background-color:#EEF7FA;
-    font-family: Roboto, serif;
-	font-weight: 400;
+    background-color:#f4f4f7;
+    font-family: Raleway, sans-serif;
+	font-weight: 700;
+    color:black;
+    height:100%;
+    margin:0;
 }
 
-form {
-	margin-left:auto;
-	margin-right:auto;
-    width:13em;
-	margin-top:.6em;
+a{
+    text-decoration:none;
+}
+
+.container {
+	margin:0 auto;
+    width:300px;
+    background-color:#ebebf0;
+    min-height:100%;
+}
+
+form{
+    width:90%;
+    margin:0 auto;
 }
 
 h2 {
-    color:#f78d1d;
-	margin-bottom: -.6em;
-	font-size: 1.5em;
+	font-size: 3.15em;
+    line-height:1em;
 	text-align: center;
-    font-family: 'Roboto Slab', sans-serif;
+    font-weight: 200;
+    margin:0;
+    padding: 20px 0 0;
 }
 h3 {
-    color:#527483;
-	margin-bottom: -.2em;
-	font-size: 1em;
-    font-family: 'Roboto Slab', sans-serif;
+	font-size: 1.5em;
+    line-height:1em;
 	text-align: center;
+    font-weight: 200;
+    max-width:90%;
+    margin: 0 auto;
 }
 
 p{
-	margin-top:.4em;
-	margin-bottom:0;
+	margin: .75em 0 0 0;
 }
 
 input{
     width:100%;
     display: block;
     text-indent:.5em;
-    border-radius:.5em;
     border: 1px solid #cccccc;
-}
-
-div{
-	display:inline-block;
-	margin-bottom: -.3em;
+    padding:.25em 0;
+    margin:.25em 0 .5em 0;
+    font-size:1.05em;
 }
 
 #txt_site{
@@ -52,40 +64,45 @@ div{
 #num_iteration{
 	width:25%;
 	float:right;
-
 }
 
 #lab_site{
 	width:50%;
 	float:left;
-
 }
 
 #lab_iteration{
 	width:50%;
 	float:right;
 	text-align: right;
-
 }
 
 #btn_generate {
-	font-family: 'Roboto Slab', sans-serif;
-	font-size: 1em;
-    margin-top:.5em;
-    margin-bottom:.5em;
+    font-family:Raleway, sans-serif;
+    font-weight:200;
+	font-size: 1.15em;
+    margin: .75em 0;
     padding:.75em;
-	border-radius:.25em;
     color: #fef4e9;
 	border: solid 1.5px #da7c0c;
 	background: #f78d1d;
-	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
-	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
-
-	
-	
 }
-#btn_generate:hover {
-    background: #f47c20;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
-	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+
+#btn_generate:hover {background: #f47c20;}
+
+.link p{
+    color:#f78d1d;
+    text-align:center;
+    padding-bottom:.75em;
+}
+.link:hover {color: #f47c20;}
+
+/* comment this part out for extension */
+@media screen and (max-width: 600px) {
+.container{
+    width:100%;
+}
+input{
+    padding:.5em 0;
+}
 }

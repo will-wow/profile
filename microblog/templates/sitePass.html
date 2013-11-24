@@ -5,13 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <link rel="stylesheet" href='{{ STATIC_URL }}sitePass/popup.css'/>
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:200,700' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src='{{ STATIC_URL }}sitePass/sha256.js'></script>
     <script type="text/javascript" src='{{ STATIC_URL }}sitePass/popup.js'></script>
     <link rel="shortcut icon" type="image/ico"  href="{{ STATIC_URL }}sitePass/favicon.ico"/>
 </head>
 <body>
+    <div class='container'>
 		<h2>sitePass:</h2>
 		<h3>Generate a password for each of your websites!</h3>
         <form>
@@ -26,6 +26,9 @@
             <input type='button' id='btn_generate' value="Generate Password"/>
             
             <p>New password:</p> <input type='text' id='txt_new_pass'>
+            
+            <a class='link' target='_blank' href='http://whentheresawill.net/about-sitePass'><p>Find out more</p></a>
         </form>
+    </div>
 </body>
 </html>
