@@ -1,5 +1,6 @@
  /*
     Copyright (C) 2013  Will Lee-Wagner
+    whentheresawill.net
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -52,6 +53,7 @@ function GenPassword() {
 	var passLength; // the length of the final password
     var hashedPass; //will hold a hashed version of the password & site
     var iterationNum = parseInt(document.getElementById("num_iteration").value); //get the given iteration#
+    var lengthNum; //a randomized number generated from the hash
     var secretNum; //a randomized number generated from the hash
     var hashChar; //use to generate the newPass, letter by letter
     var checkChar; //to check if a given char type is in the password
@@ -64,20 +66,17 @@ function GenPassword() {
     var hasSymbol = false; //true if the pass has 2 symbols
     var newPass = ""; //add letters to make the new password
 	
-	//set the number of characters for the final password
-	if (passWord.length < 8)
-		passLength = 8;
-	else if (passWord.length > 37)
-		passLength = 37;
-	else
-		passLength = passWord.length;
-	
     //hash the sitename and password
     hashedPass = new String(CryptoJS.SHA256(siteName + passWord + iterationNum));
-
-    //generate a randomized number from the hash, to use later
-    secretNum =  parseInt(hashedPass.substring(1,4),16);
-
+    
+    //generate a randomized number from the hash, to use to set the lenght
+    lengthNum =  parseInt(hashedPass.substring(1,4),16);
+    //generate another randomized number from the hash, to use later
+    secretNum =  parseInt(hashedPass.substring(6,9),16);
+    
+    //set the pass length to between 10 and 14 to help aid security
+    passLength = (lengthNum % 6) + 9
+    
     //Generate a usable pass
     for (var i=0;i<passLength;i++)
     {   
@@ -132,10 +131,9 @@ function GenPassword() {
             newPass = doAddChar(newPass, hashedPass, x+3, 'upper', 26, 13, 16);
         }
 		
-		//after 100 tries, just add the charaters to the first four spots.
-		//this should almost never happen, but this stops long loops from ever happening
+		//after 100 tries, just give up
+		//this should almost never happen, but it stops long loops from ever happening
 		if (x===100) {
-			console.log('failed to add all needed characters');
 			hasNumber = true;
 			hasSymbol = true;
 			hasLow = true;
