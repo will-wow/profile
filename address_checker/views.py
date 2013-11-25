@@ -4,15 +4,11 @@ import SplitAddress
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from section.models import Section, Slice, Grid
+from section.views import add_header_footer
 
 def addresses(request):
     context={}
-    context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key')
-    # footer
-    footer_section = Section.objects.filter(slug='footer')
-    context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
-    context['footer_grid_list'] = Grid.objects.filter(slice=context['footer_slice'].id)
-    
+    context = add_header_footer(context)
     
     if request.method == 'POST':
         context['form']=AddressForm(request.POST)

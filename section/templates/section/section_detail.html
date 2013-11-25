@@ -19,8 +19,13 @@
     {% endifequal %}
     {% endfor %}
 </nav></div>
+<div class='slice-back'></div><div class='foot-back'></div>
 {% for slice in slice_list %}
+{% ifequal slice_list.count 1 %}
+<div class='slice slice-0'><div class='slice-container'>
+{% else %}
 <div class='slice slice-{{ slice.type }}'><div class='slice-container'>
+{% endifequal %}
     {% if slice.title %}
     <div class='slice-head'>{{ slice.title|safe }}</div>
     {% endif %}

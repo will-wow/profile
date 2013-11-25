@@ -1,6 +1,21 @@
 from .models import Section, Slice, Grid, Link
 from django.views.generic import DetailView, ListView
 
+def add_header_footer(context):
+    '''add the header and footer to the context'''
+    # header
+    context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key').filter(nav=True)
+    # footer
+    footer_section = Section.objects.filter(slug='footer')
+    context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
+    context['footer_grid_list'] = Grid.objects.filter(slice=context['footer_slice'].id)
+    context['footer_link_list']=[]
+    for grid in context['footer_grid_list']:
+        grid_links = Link.objects.filter(grid=grid.id)
+        context['footer_link_list'] += grid_links
+    
+    return context
+
 def get_max(grid_list):
     max = 0
     max_id = 0
@@ -33,20 +48,22 @@ class SectionView(DetailView):
                 grid_links = Link.objects.filter(grid=grid.id)
                 context['link_list'] += grid_links
         
-        # header
-        context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key').filter(nav=True)
-        # footer
-        footer_section = Section.objects.filter(slug='footer')
-        context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
-        context['footer_grid_list'] = Grid.objects.filter(slice=context['footer_slice'].id)
-        context['footer_link_list']=[]
-        for grid in context['footer_grid_list']:
-            grid_links = Link.objects.filter(grid=grid.id)
-            context['footer_link_list'] += grid_links
+        context = add_header_footer(context)
         
         return context
 
+
 class HomeView(ListView):
+    model = Section
+    
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context = add_header_footer(context)
+        
+        return context
+    
+
+class HomeView2(ListView):
     model = Section
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
