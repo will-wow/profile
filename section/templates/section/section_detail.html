@@ -1,6 +1,7 @@
 {% extends "section/base.html" %}
 
-{% block page_title %}{{ section.title }}{% endblock %}
+{% block page_title %}{{ section.title }} | {% endblock %}
+{% block meta_description %}{{ section.blurb }}{% endblock %}
 
 {% block links %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}section/css/shCoreEclipse.css"/>
