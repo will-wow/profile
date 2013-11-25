@@ -39,6 +39,10 @@ class SectionView(DetailView):
         footer_section = Section.objects.filter(slug='footer')
         context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
         context['footer_grid_list'] = Grid.objects.filter(slice=context['footer_slice'].id)
+        context['footer_link_list']=[]
+        for grid in context['footer_grid_list']:
+            grid_links = Link.objects.filter(grid=grid.id)
+            context['footer_link_list'] += grid_links
         
         return context
 
@@ -51,5 +55,9 @@ class HomeView(ListView):
         footer_section = Section.objects.filter(slug='footer')
         context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
         context['footer_grid_list'] = Grid.objects.filter(slice=context['footer_slice'].id)
+        context['footer_link_list']=[]
+        for grid in context['footer_grid_list']:
+            grid_links = Link.objects.filter(grid=grid.id)
+            context['footer_link_list'] += grid_links
         
         return context

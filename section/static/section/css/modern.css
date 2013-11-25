@@ -17,10 +17,10 @@ body{
 }
 
 body a{
-    color:#E68702;
+    color:#f47c20;
     text-decoration:none;
 }
-body a:hover{color:#A35F00;}
+body a:hover{color:#f47c20;}
 
 .container{
     min-height:100%;
@@ -159,9 +159,9 @@ footer{
     background: linear-gradient(to bottom,  rgba(10,10,10,0.5) 0%,rgba(10,10,10,1) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#800a0a0a', endColorstr='#0a0a0a',GradientType=0 ); /* IE6-9 */
 }
-footer a{color:#f2f4f5;}
-footer a:hover{color:orange;}
-footer .grid{vertical-align:baseline;}
+footer a{color:#f78d1d;}
+footer a:hover{color:#f47c20;}
+footer .no-link a{color:#f2f4f5;}
 footer .grid-container{padding:5px 0;}
 
 /* Desktop */ 
@@ -197,11 +197,10 @@ nav{width:80%;}
 
 .footer-blocker{height:100px;}
 footer{
-    vertical-align:baseline;
     bottom:0;
     position:absolute;
     height:100px;
-    line-height:50px;
+    line-height:1em;
 }
 footer .grid-container{padding:0;}
 } 

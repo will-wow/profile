@@ -20,9 +20,23 @@
 	<footer>
 	    {% for grid in footer_grid_list %}
         {% ifequal grid.slice.id footer_slice.id %}
-        <div class='grid grid-{{ grid.size }}'><div class='grid-container grid-cont-mid'>
-            {{ grid.content|safe }}
-        </div></div>
+        <div class='grid grid-{{ grid.size }}'><div class='grid-container grid-cont-mid'><p>
+            <span class='no-link'>{{ grid.content|safe }}<br/></span>
+        {% for link in footer_link_list %}
+        {% ifequal link.grid.id grid.id %}
+        {% if link.section_link %}
+        <a href="{% url 'section:section' link.section_link.slug %}">
+        {% elif link.other_link %}
+        <a href="{{ link.other_link }}">
+        {% elif link.file_link %}
+        <a href="{{ link.file_link.url }}">
+        {% else %}
+        <a>
+        {% endif %}
+        {{ link.display }}</a><br/>
+        {% endifequal %}
+        {% endfor %}
+        </p></div></div>
         {% endifequal %}
         {% endfor %}
 	</footer>
