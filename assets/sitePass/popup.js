@@ -222,6 +222,7 @@ function charFreq() {
                 charCounter = charCounter+1;
             }
         }
+    console.debug(String.fromCharCode(conversionChart[y]) + ': ' + charCounter);
     charCounter = 0;
     }
 }
