@@ -4,7 +4,7 @@
   2913-11-29
   
   This script generates a strong password from a seed site, password,
-  and number. It uses the outside scripts for hash and random number 
+  and number. It uses outside scripts for hashing and random number 
   generation.
   
   In short, this creates a hash from all three inputs, and uses that
@@ -131,10 +131,15 @@ function GenPassword() {
   //hash the sitename and password
   hashedPass = new String(CryptoJS.SHA256(siteName + passWord + iterationNum)) + "";
   
-  //init the random number generator with the hash
+  //init the random number generator with the hash 
   Math.seedrandom(hashedPass + '\0');
   
+  //throw out the first 786 bytes (these are biased)
+  for (var i=0;i<3072;i++){Math.random()}
+  
   //Add specific char types
+  //two lower, two upper, a number, and a symbol 
+  //is a standard password requirement
   passChars.push(getCharByType(Math.random(),'lower'));
   passChars.push(getCharByType(Math.random(),'lower'));
   passChars.push(getCharByType(Math.random(),'upper'));
@@ -142,7 +147,7 @@ function GenPassword() {
   passChars.push(getCharByType(Math.random(),'number'));
   passChars.push(getCharByType(Math.random(),'symbol'));
   
-  //add some more random chars
+  //add 4 to 8 more random chars (for a total size of 10-14 chars)
   for (var n=0;n<=randRange(Math.random(),4,8);n++)
   {
     passChars.push(String.fromCharCode(convTable.allChars[randRange(Math.random(),0,convTable.allCount)]));
@@ -173,13 +178,13 @@ try {chrome.tabs.query({ currentWindow: true, active: true }, function (tab) {
 });}
 
 catch(e){
-//suppress errors, allow password to go to example.com default
+//suppress errors, allow password to go to the example.com default
 }
 
 //generate the conversion tables
 var convTable = conversionTables();
 
-//Triggers the create new password function by clicking
+//Triggers the create new password function by clicking the Gen button
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById("btn_generate").addEventListener('click', GenPassword, false);
 });
