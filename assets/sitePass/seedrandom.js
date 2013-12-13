@@ -63,7 +63,13 @@ var startdenom = math.pow(width, chunks),
 //
 math['seedrandom'] = function(seed) {
   // Use the seed to initialize an ARC4 generator.
-  var arc4 = new ARC4(seed);
+  var key = [];
+  
+  // Flatten the seed string or build one from local entropy if needed.
+  var shortseed = mixkey(flatten(seed,3), key);
+  
+  // Use the seed to initialize an ARC4 generator.
+  var arc4 = new ARC4(key);
 
   // Override Math.random
 
@@ -133,6 +139,41 @@ function ARC4(key) {
     // See http://www.rsa.com/rsalabs/node.asp?id=2009
   })(width);
 }
+
+
+// flatten()
+// Converts an object tree to nested arrays of strings.
+//
+function flatten(obj, depth) {
+  var result = [], typ = (typeof obj)[0], prop;
+  if (depth && typ == 'o') {
+    for (prop in obj) {
+      try { result.push(flatten(obj[prop], depth - 1)); } catch (e) {}
+    }
+  }
+  return (result.length ? result : typ == 's' ? obj : obj + '\0');
+}
+
+// mixkey()
+// Mixes a string seed into a key that is an array of integers, and
+// returns a shortened string seed that is equivalent to the result key.
+//
+function mixkey(seed, key) {
+  var stringseed = seed + '', smear, j = 0;
+  while (j < stringseed.length) {
+    key[mask & j] =
+      mask & ((smear ^= key[mask & j] * 19) + stringseed.charCodeAt(j++));
+  }
+  return tostring(key);
+}
+
+// tostring()
+// Converts an array of charcodes to a string
+//
+function tostring(a) {
+  return String.fromCharCode.apply(0, a);
+}
+
 
 
 // End anonymous scope, and pass initial values.

@@ -39,7 +39,7 @@ function randRange(random_num, lower_bound, upper_bound) {
   return Math.floor(random_num * range) + lower_bound;
 }
 
-//add a specific character type
+//generate a specific character type
 function getCharByType(random_num, charType) {
   
   if (charType === 'upper') {
@@ -55,6 +55,17 @@ function getCharByType(random_num, charType) {
   else if (charType === 'number') {
     return randRange(random_num,0,9);
   }
+}
+
+//convert a hex string to ASCII
+function hexToASCII(hex) {
+  var string='';
+  //loop through hex two at a time
+  for (var i=0;i<hex.length;i+=2) {
+    //convert the hex to decimal, and the decimal to a string
+    string += String.fromCharCode(parseInt(hex.substr(i,2),16));
+  }
+  return string;
 }
 
 //Fisher–Yates shuffle from:
@@ -124,18 +135,20 @@ function conversionTables() {
 function GenPassword() {
   var siteName = document.getElementById("txt_site").value;   //get the given site name
   var passWord = document.getElementById("txt_password").value; //get the given password
-  var iterationNum = parseInt(document.getElementById("num_iteration").value); //get the given iteration#
+  var iterationNum = document.getElementById("num_iteration").value; //get the given iteration#
 	var hashedPass; //will hold a hashed version of the password & site
 	var passChars = []; //an array to hold the password chars to shuffle
 	
-  //hash the sitename and password
-  hashedPass = new String(CryptoJS.SHA256(siteName + passWord + iterationNum)) + "";
+  //hash the sitename and password (add empty string to make output useable)
+  //and convert the hash to a string, to send to the ARC4 PRNG
+  hashedPass = hexToASCII(CryptoJS.SHA256(siteName+passWord+iterationNum)+'');
   
-  //init the random number generator with the hash 
+  //init the PRNG with the hash 
+  //this replaces the standard Math.random()
   Math.seedrandom(hashedPass + '\0');
   
-  //throw out the first 786 bytes (these are biased)
-  for (var i=0;i<3072;i++){Math.random()}
+  //throw out the first 786 bytes (these are somehwat non-random)
+  for (var i=0;i<393;i++){Math.random()}
   
   //Add specific char types
   //two lower, two upper, a number, and a symbol 
