@@ -1,8 +1,23 @@
 .slice{min-height:0;}
 
-input {
-    margin-left:0;
-    margin-right:0;
-}
 .full-width {width:100%;}
 
+input{
+    margin-left:0;
+    margin-right:0;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    border: 1px solid #cccccc;
+    text-indent:.25em;
+}
+input[type="submit"]{
+    text-indent:0;
+    padding:.5em 2em;
+}
+
+.right {float:right;}
+
+.num{width:15%;}
+.dir{width:8%;}
+.street{width:41%;}
+.suffix{width:20%;}
