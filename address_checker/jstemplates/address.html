@@ -1,0 +1,27 @@
+<div class="slice slice-{{ slice_id }}"><div class="slice-container">
+<div class="grid grid-half"><div class="grid-container">
+  <form id="submit-form_{{ id }}">
+    <h3>Two-Line Address</h3>
+    <input id="id_address1_{{ id }}" placeholder="Address 1" name="address1" type="text">
+    <input id="id_address2_{{ id }}" placeholder="Address 2" name="address2" type="text">
+    <label for="id_has_attn_{{ id }}">Has attn: </label><input id="id_has_attn_{{ id }}" name="has_attn" type="checkbox">
+    <input type="submit" value="Split">
+  </form>
+</div></div>
+  
+<div class="grid grid-half"><div class="grid-container">
+  <form id="return-form_{{ id }}">
+    <h3>Split Address</h3>
+    <table>
+    <tbody><tr><th><label for="attn">Attn:</label></th><td><input id="attn_{{ id }}" class="full-width" name="attn" placeholder="Attn" type="text" value=""></td></tr>
+    <tr><th><label>Line 1:</label></th><td>
+      <input id="num_{{ id }}" name="num" placeholder="Num" type="text" size="5" value="">
+      <input id="dir1_{{ id }}" name="dir1" placeholder="Dir1" type="text" size="2" value="">
+      <input id="street_{{ id }}" name="street" placeholder="Street Name" type="text" size="24" value="">
+      <input id="suffix_{{ id }}" name="suffix" placeholder="Suffix" type="text" size="10" value="">
+      <input id="dir2_{{ id }}" name="dir2" placeholder="Dir2" type="text" size="2" value="">
+    </td></tr>
+    <tr><th><label for="line2_{{ id }}">Line 2:</label></th><td><input id="line2_{{ id }}" class="full-width" name="line2" placeholder="Line 2" type="text"></td></tr>
+    </tbody></table>   
+  </form>
+</div></div></div></div>

@@ -126,12 +126,14 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
+    'jstemplate',
     'south',
     'section',
     'address_checker',
 )
+
+JSTEMPLATE_APP_DIRNAMES = ['jstemplates']
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

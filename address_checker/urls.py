@@ -4,4 +4,5 @@ from . import views
 
 urlpatterns = patterns('',
     url(r'^$',views.addresses),
+    url(r'^split/?$',views.ajax_addresses),
 )

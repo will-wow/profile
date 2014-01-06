@@ -140,7 +140,7 @@ input{
     padding-top:.25em;
     padding-bottom:.25em;
     border: 1px solid #cccccc;
-    text-indent:.5em;
+    text-indent:.25em;
 }
 input[type="submit"]{
     text-indent:0;

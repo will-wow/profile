@@ -1,9 +1,19 @@
 {% extends "section/base.html" %}
+{% load jstemplate %}
 
 {% block page_title %}Normalized Address Splitter | {% endblock %}
 {% block meta_description %}
 This page takes a two-field address and splits it into a normalized seven-field address
 {% endblock %}
+
+{% block links %}
+<link rel='stylesheet' href='{{ STATIC_URL }}address_checker/address_checker.css' type='text/css'>
+<script type='text/javascript' src='{{ STATIC_URL }}lib/jquery-2.0.3.min.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}lib/mustache.js'></script>
+<script type='text/javascript' src='{{ STATIC_URL }}address_checker/address_checker.js'></script>
+{% mustachejs "address" %}
+{% endblock %}
+
 
 {% block content %}
 <div class='nav-bar'><nav>
@@ -19,52 +29,30 @@ This page takes a two-field address and splits it into a normalized seven-field 
 <div class='slice-back'></div><div class='foot-back'></div>
 <div class='slice slice-0'><div class='slice-container'>
 <div class='slice-head'>Split an Address</div>
-<div class='grid grid-third'><div class='grid-container'>
+<div class='grid grid-full'><div class='grid-container'>
   <p>
-    This page is a sample of my address splitter function, which uses regular expressions and is written in Python.
+    This is a sample page that shows off some of my python and ajax skills.
+  </p>
+  <p>
+    It is hooked up to a python address splitter function, which uses regular expressions to break a two-field address into a seven-field one.
     It's mostly useful when converting an address database from a limited two-line
     format to a modern, normalized format, where each piece of the address has its own field.
   </p>
+  <p>
+    I've used ajax techniques to query the python script without refreshing the page, and then add another set of fields to add more data into.
+  </p>
+  <br/>
   <p>
     Since addresses come in a lot of formats, a two-line database can have a lot of weird formats 
     crammed into those lines. This attempts to parse all of that. 
   </p>
   <p>
-    This page is just an example - put in two address lines, and it'll spit out a nicely parsed address. But
-    if you just wanted to split a single address, you could do that yourself. The real beauty of this
+    This page is just an example - put in two address lines, and it'll spit out a nicely parsed address, and give you the space to try another one.
+    But if you just wanted to split a single address, you could do that yourself. The real beauty of this
     sort of function in when you have thousands of records to clean. Check back soon, and you'll be able to upload
     a text file of addresses and get a download of them all split up.
   </p>
 </div></div>
-<div class='grid grid-third'><div class='grid-container'>
-  {% if form.errors %}
-      <p style="color: red;">
-          Please correct the error{{ form.errors|pluralize }} below.
-      </p>
-  {% endif %}
-  
-  <form action="" method="post">
-      <h3>Two-Line Address</h3>
-      <table>
-          {{ form }}
-      </table>
-      {% csrf_token %}
-      <input type="submit" value="Split">
-  </form>
 </div></div>
-  
-<div class='grid grid-third'><div class='grid-container'>
-  <form>
-    <h3>Split Address</h3>
-    <table>
-    <tr><th><label for="attn">Attn:</label></th><td><input id="attn" name="attn" type="text" value='{{ split.attn|default:"" }}'/></td></tr>
-    <tr><th><label for="num">Number:</label></th><td><input id="num" name="num" type="text" value='{{ split.number|default:"" }}'/></td></tr>
-    <tr><th><label for="dir1">Pre Direction:</label></th><td><input id="dir1" name="dir1" type="text" value='{{ split.dir1|default:"" }}'/></td></tr>
-    <tr><th><label for="street">Street Name:</label></th><td><input id="street" name="street" type="text" value='{{ split.street|default:"" }}'/></td></tr>
-    <tr><th><label for="suffix">Suffix:</label></th><td><input id="suffix" name="suffix" type="text" value='{{ split.suffix|default:"" }}'/></td></tr>
-    <tr><th><label for="dir2">Post Direction:</label></th><td><input id="dir2" name="dir2" type="text" value='{{ split.dir2|default:"" }}'/></td></tr>
-    <tr><th><label for="line2">Line 2:</label></th><td><input id="line2" name="line2" type="text" value='{{ split.line2|default:"" }}'/></td></tr>
-  </table></form>
-</div></div></div></div>
-    
+
 {% endblock %}

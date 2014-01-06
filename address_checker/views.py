@@ -1,22 +1,23 @@
 from django.shortcuts import render
 from forms import AddressForm
 import SplitAddress
-from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView
-from section.models import Section, Slice, Grid
 from section.views import add_header_footer
+from django.http import HttpResponse
+import json
 
 def addresses(request):
     context={}
     context = add_header_footer(context)
-    
-    if request.method == 'POST':
-        context['form']=AddressForm(request.POST)
-        if context['form'].is_valid():
-            cd = context['form'].cleaned_data
-            sr = SplitAddress.Splitter_Regex()
-            context['split'] = SplitAddress.Splitter(sr,cd['address1'],cd['address2'],cd['has_attn']).addys
-            return render(request,'address_checker/splitter.html',context)
-    else:
-        context['form']=AddressForm()
     return render(request,'address_checker/splitter.html',context)
+
+def ajax_addresses(request):
+    split={}
+    
+    if request.is_ajax():
+        form=AddressForm(request.GET)
+        if form.is_valid():
+            cd = form.cleaned_data
+            sr = SplitAddress.Splitter_Regex()
+            split = SplitAddress.Splitter(sr,cd['address1'],cd['address2'],cd['has_attn']).addys
+            #return render(request,'address_checker/splitter.html',context)
+            return HttpResponse(json.dumps(split), content_type="application/json")
