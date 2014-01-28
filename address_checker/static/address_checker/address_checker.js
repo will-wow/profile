@@ -2,7 +2,7 @@ var next_id;
 
 function print_address(response) {
     // get form id
-    id = this.id;
+    var id = this.id;
     // update values
     $('#attn_'+id).val(response.attn);
     $('#num_'+id).val(response.number);
@@ -30,7 +30,6 @@ function get_address(serializedData, id){
 function add_ajax_submit(form_name, id) {
     $(form_name).submit(function(event) {
         var $form = $(this),
-            $inputs = $form.find("input, select, button, textarea"),
             serializedData = $form.serialize();
         
         get_address(serializedData, id).done(print_address);

@@ -1,7 +1,8 @@
 from django.db import models
 
+
 class Section(models.Model):
-    '''Section Page'''
+    """Section Page"""
     title = models.CharField(max_length=255)
     sort_key = models.IntegerField(default=0)
     slug = models.SlugField(max_length=255, blank=True)
@@ -9,7 +10,7 @@ class Section(models.Model):
     nav = models.BooleanField()
     
     class Meta:
-        ordering = ['sort_key','title']
+        ordering = ['sort_key', 'title']
     
     def __unicode__(self):
         return self.title
@@ -19,8 +20,9 @@ class Section(models.Model):
             self.slug = slugify(self.title)
         super(Section, self).save(*args, **kwargs)
 
+
 class Slice(models.Model):
-    '''Contianer for Grid blocks'''
+    """Container for Grid blocks"""
     section = models.ForeignKey(Section)
     sort_key = models.IntegerField(default=0)
     title = models.CharField(max_length=225, blank=True)
@@ -33,7 +35,7 @@ class Slice(models.Model):
         
 
 class Grid(models.Model):
-    # define grid-size choices
+    """"define grid-size choices"""
     GRID_CHOICES = (
         ('full', 'Full'),
         ('half', 'Half'),
@@ -59,6 +61,7 @@ class Grid(models.Model):
     def __unicode__(self):
         return '{0}-{1}'.format(self.slice, self.sort_key)
 
+
 class Link(models.Model):
     grid = models.ForeignKey(Grid)
     # the text to display as a link
@@ -69,11 +72,10 @@ class Link(models.Model):
     other_link = models.CharField(max_length=225, blank=True)
     # an uploaded file
     file_link = models.FileField(upload_to='section/bin', blank=True)
-    
-    
+
     class Meta:
         ordering = ['grid__slice__section__title', 'grid__slice__sort_key',
-            'grid__sort_key', 'display']
+                    'grid__sort_key', 'display']
     
     def __unicode__(self):
         return '{0}> {1}'.format(self.grid, self.display)
