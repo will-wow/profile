@@ -5,12 +5,14 @@
     <meta name="description" content='{% block meta_description %}{% endblock %}' />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <link rel="stylesheet" href='/static/section/css/modern.css'/>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,700|Bevan' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href='{{ STATIC_URL }}section/css/modern.css'/>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:400,700|Bevan' rel='stylesheet' type='text/css' />
     {% block links %}
     {% endblock %}
-    <link rel="shortcut icon" type="image/ico"  href="/static/favicon.ico"/>
     
+    <link rel="shortcut icon" type="image/ico"  href="/static/favicon.ico"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="{{ STATIC_URL }}section/js/jquery.willpop-0.3.js"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -27,30 +29,49 @@
         <div class='title-container'><a href="{% url 'section:front' %}"><h1>When there's a Will...</h1></a></div>
     </div>
 	{% block content %}
-    {% endblock %}
+  {% endblock %}
 	<div class='footer-blocker'></div>
 	{% block footer-type %}<footer>{% endblock %}
 	    {% for grid in footer_grid_list %}
         {% ifequal grid.slice.id footer_slice.id %}
         <div class='grid grid-{{ grid.size }}'><div class='grid-container grid-cont-mid'><p>
-            <span class='no-link'>{{ grid.content|safe }}<br/></span>
+          {% if grid.content %}
+          <span class='no-link'>{{ grid.content|safe }}<br/></span>
+          {% endif %}
         {% for link in footer_link_list %}
         {% ifequal link.grid.id grid.id %}
-        {% if link.section_link %}
-        <a href="{% url 'section:section' link.section_link.slug %}">
-        {% elif link.other_link %}
-        <a href="{{ link.other_link }}">
-        {% elif link.file_link %}
-        <a href="{{ link.file_link.url }}">
+        {% if link.contact_link %}
+          <span id="contact">{{ link.display }}</span><br/>
         {% else %}
-        <a>
+          {% if link.section_link %}
+          <a href="{% url 'section:section' link.section_link.slug %}">
+          {% elif link.other_link %}
+          <a href="{{ link.other_link }}">
+          {% elif link.file_link %}
+          <a href="{{ link.file_link.url }}">
+          {% else %}
+          <a>
+          {% endif %}
+          {{ link.display }}</a><br/>
         {% endif %}
-        {{ link.display }}</a><br/>
         {% endifequal %}
         {% endfor %}
         </p></div></div>
         {% endifequal %}
         {% endfor %}
 	</footer>
-</div></body>
+</div>
+<script>
+  $('#contact').addContactPop({
+    emailUrl: '{% url "section:contact" %}',
+    emailMsg: 'Send me an email!',
+    socialMsg: 'Find me on social media:',
+    socialUrls: {
+      twitter: 'http://twitter.com/WillLW',
+      github: 'http://github.com/whenther'
+    },
+    socialDir: '{{ STATIC_URL }}section/img/social_icons/'
+  });
+</script>
+</body>
 </html>

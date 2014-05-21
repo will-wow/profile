@@ -66,6 +66,8 @@ class Link(models.Model):
     grid = models.ForeignKey(Grid)
     # the text to display as a link
     display = models.CharField(max_length=255)
+    # a contact me link
+    contact_link = models.BooleanField()
     # a link to another section
     section_link = models.ForeignKey(Section, null=True, blank=True)
     # a url link

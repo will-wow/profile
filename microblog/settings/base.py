@@ -12,13 +12,18 @@ root = lambda * x: os.path.join(os.path.abspath(PROJECT_ROOT), *x)
 
 DEBUG = False
 
+# FILL THIS OUT IN LOCAL.PY TO USE EMAIL
+# email settings
+EMAIL_HOST = ''
+EMAIL_PORT = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
 #replaced by local.py or production.py
 DATABASES = {
     'default': {
     }
 }
-
-ALLOWED_HOSTS = ['whentheresawill.net']
 
 TIME_ZONE = 'America/Los_Angeles'
 
@@ -39,7 +44,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/home/whenther/public_html/media/'
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -50,7 +55,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = '/home/whenther/public_html/static/'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -72,9 +77,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'r)%i@d2rbe1qqj053_0dg5d4=)4r^)o%ayl+h0q_+nln^dy-f6'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -94,7 +96,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'microblog.urls'
 
-# Python dotted path to the WSGI application used by Django's runserver. 
+# Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'microblog.wsgi.application'
 
 TEMPLATE_DIRS = (

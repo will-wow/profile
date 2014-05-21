@@ -3,3 +3,4 @@
 local.py
 production.py
 south
+section/migrations

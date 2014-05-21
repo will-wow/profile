@@ -5,6 +5,8 @@ def add_header_footer(context):
     '''add the header and footer to the context'''
     # header
     context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key').filter(nav=True)
+    print('nav list:')
+    print(context['nav_list'])
     # footer
     footer_section = Section.objects.filter(slug='footer')
     context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
@@ -61,20 +63,28 @@ class HomeView(ListView):
         context = add_header_footer(context)
         
         return context
-    
 
-class HomeView2(ListView):
-    model = Section
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        context['nav_list'] = Section.objects.exclude(slug='footer').order_by('sort_key').filter(nav=True)
-        # footer
-        footer_section = Section.objects.filter(slug='footer')
-        context['footer_slice'] = Slice.objects.filter(section=footer_section[0].id)[0]
-        context['footer_grid_list'] = Grid.objects.filter(slice=context['footer_slice'].id)
-        context['footer_link_list']=[]
-        for grid in context['footer_grid_list']:
-            grid_links = Link.objects.filter(grid=grid.id)
-            context['footer_link_list'] += grid_links
-        
-        return context
+
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.mail import send_mail
+from forms import ContactEmail
+from django.views.decorators.csrf import csrf_exempt
+import json, smtplib
+
+@csrf_exempt
+def contact_view(request):
+    if request.is_ajax():
+        form=ContactEmail(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            
+            try:
+              send_mail('Contact Me Email',cd['email'],cd['emailfrom'],'william.lee.wagner@gmail.com',fail_silently=False)
+            except:
+              response = json.dumps({'sent':False,'message':'There was a server error: message not sent!'})
+            else:
+              response = json.dumps({'sent':True,'message':''})
+            
+            return HttpResponse(response, content_type="application/json")

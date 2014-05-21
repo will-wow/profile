@@ -39,6 +39,7 @@ class LinkAdmin(admin.ModelAdmin):
     fields = (
         'grid',
         'display',
+        'contact_link',
         'section_link',
         'other_link',
         'file_link'
