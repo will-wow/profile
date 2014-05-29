@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from forms import ContactEmail
 from django.views.decorators.csrf import csrf_exempt
-from django.conf.settings import CONTACT_EMAIL_TO
+from django.conf import settings
 import json, smtplib
 
 def add_header_footer(context):
@@ -80,7 +80,7 @@ def contact_view(request):
       cd = form.cleaned_data
       
       try:
-        send_mail('Contact Me Email',cd['email'],cd['emailfrom'],[CONTACT_EMAIL_TO],fail_silently=False)
+        send_mail('Contact Me Email',cd['email'],cd['emailfrom'],[settings.CONTACT_EMAIL_TO],fail_silently=False)
       except Exception as e:
         response = json.dumps({'sent':False,'message':'There was a server error: {}'.format(e)})
       else:
