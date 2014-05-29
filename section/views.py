@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from forms import ContactEmail
 from django.views.decorators.csrf import csrf_exempt
-from settings import CONTACT_EMAIL_TO
+from django.conf.settings import CONTACT_EMAIL_TO
 import json, smtplib
 
 def add_header_footer(context):
