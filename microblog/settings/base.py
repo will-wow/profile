@@ -18,6 +18,7 @@ EMAIL_HOST = ''
 EMAIL_PORT = ''
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
+CONTACT_EMAIL_TO = ''
 
 #replaced by local.py or production.py
 DATABASES = {
