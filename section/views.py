@@ -1,5 +1,12 @@
 from .models import Section, Slice, Grid, Link
 from django.views.generic import DetailView, ListView
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.mail import send_mail
+from forms import ContactEmail
+from django.views.decorators.csrf import csrf_exempt
+from settings import CONTACT_EMAIL_TO
+import json, smtplib
 
 def add_header_footer(context):
     '''add the header and footer to the context'''
@@ -65,14 +72,6 @@ class HomeView(ListView):
         return context
 
 
-
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.core.mail import send_mail
-from forms import ContactEmail
-from django.views.decorators.csrf import csrf_exempt
-import json, smtplib
-
 @csrf_exempt
 def contact_view(request):
   if request.is_ajax():
@@ -81,7 +80,7 @@ def contact_view(request):
       cd = form.cleaned_data
       
       try:
-        send_mail('Contact Me Email',cd['email'],cd['emailfrom'],[EMAIL_HOST_PASSWORD],fail_silently=False)
+        send_mail('Contact Me Email',cd['email'],cd['emailfrom'],[CONTACT_EMAIL_TO],fail_silently=False)
       except Exception as e:
         response = json.dumps({'sent':False,'message':'There was a server error: {}'.format(e)})
       else:
