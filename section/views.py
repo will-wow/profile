@@ -75,17 +75,17 @@ import json, smtplib
 
 @csrf_exempt
 def contact_view(request):
-    if request.is_ajax():
-        form=ContactEmail(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            
-            try:
-              send_mail('Contact Me Email',cd['email'],cd['emailfrom'],['william.lee.wagner@gmail.com'],fail_silently=False)
-            except Exception as e:
-              print('Error: {}'.format(e))
-              response = json.dumps({'sent':False,'message':'There was a server error: {}'.format(e)})
-            else:
-              response = json.dumps({'sent':True,'message':''})
-            
-            return HttpResponse(response, content_type="application/json")
+  if request.is_ajax():
+    form=ContactEmail(request.POST)
+    if form.is_valid():
+      cd = form.cleaned_data
+      
+      try:
+        send_mail('Contact Me Email',cd['email'],cd['emailfrom'],['william.lee.wagner@gmail.com'],fail_silently=False)
+      except Exception as e:
+        print('Error: {}'.format(e))
+        response = json.dumps({'sent':False,'message':'There was a server error: {}'.format(e)})
+      else:
+        response = json.dumps({'sent':True,'message':''})
+      
+      return HttpResponse(response, content_type="application/json")
