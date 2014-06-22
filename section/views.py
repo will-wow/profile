@@ -80,6 +80,7 @@ def contact_view(request):
       cd = form.cleaned_data
       
       try:
+        print(settings.CONTACT_EMAIL_TO)
         send_mail('Contact Me Email',cd['email'],cd['emailfrom'],[settings.CONTACT_EMAIL_TO],fail_silently=False)
       except Exception as e:
         response = json.dumps({'sent':False,'message':'There was a server error: {}'.format(e)})
